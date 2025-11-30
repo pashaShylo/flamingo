@@ -1,5 +1,6 @@
 'use client';
 
+import { memo, useCallback } from 'react';
 import { Task } from '@/prisma/generated/client';
 import { Modal } from '@/components/ui/Modal';
 import { TaskForm } from './TaskForm';
@@ -12,11 +13,11 @@ interface TaskModalProps {
   onSuccess: () => void;
 }
 
-export function TaskModal({ isOpen, onClose, task, onSuccess }: TaskModalProps) {
-  const handleSuccess = () => {
+export const TaskModal = memo(function TaskModal({ isOpen, onClose, task, onSuccess }: TaskModalProps) {
+  const handleSuccess = useCallback(() => {
     onSuccess();
     onClose();
-  };
+  }, [onSuccess, onClose]);
 
   return (
     <Modal 
@@ -31,4 +32,4 @@ export function TaskModal({ isOpen, onClose, task, onSuccess }: TaskModalProps) 
       />
     </Modal>
   );
-}
+});

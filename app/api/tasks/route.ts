@@ -8,6 +8,7 @@ import {
   parseRequestBody,
   withErrorHandler,
 } from '@/lib/api/utils';
+import { CLIENT_ROUTES } from '@/lib/constants/routes.constants';
 
 export const POST = withErrorHandler(async (request: NextRequest) => {
   // Authenticate user
@@ -20,7 +21,7 @@ export const POST = withErrorHandler(async (request: NextRequest) => {
   const task = await TaskService.createTask(validated, session.user.id);
 
   // Revalidate tasks page to show new task
-  revalidatePath('/tasks', 'page');
+  revalidatePath(CLIENT_ROUTES.DASHBOARD, 'page');
 
   // Return success response with 201 Created status
   return successResponse(task, 201);

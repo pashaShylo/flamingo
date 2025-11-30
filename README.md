@@ -4,7 +4,7 @@ A modern full-stack task management application built with Next.js, featuring Go
 
 ## 🚀 Live Demo
 
-**[View Live Application](https://your-deployment-url.vercel.app)** *(Replace with your actual deployment URL)*
+**[View Live Application](https://flamingo-two-gamma.vercel.app)**
 
 ##  Getting Started
 
@@ -18,8 +18,8 @@ A modern full-stack task management application built with Next.js, featuring Go
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/flamingo-full-stack.git
-cd flamingo-full-stack
+git clone https://github.com/pashaShylo/flamingo
+cd flamingo
 ```
 
 2. **Install dependencies**
@@ -48,6 +48,9 @@ NEXTAUTH_SECRET="your-secret-key"
 # Google OAuth credentials
 GOOGLE_CLIENT_ID="your-google-client-id"
 GOOGLE_CLIENT_SECRET="your-google-client-secret"
+
+# Node environment
+NODE_ENV="development"
 ```
 
 ### Setting up Google OAuth
@@ -102,7 +105,7 @@ http://localhost:3000
   - Multiple status levels (TODO, IN_PROGRESS, DONE)
   - Priority levels (LOW, MEDIUM, HIGH, URGENT)
   - Rich task descriptions
-- **Modern UI**: Built with React, TailwindCSS, and shadcn/ui components
+- **Modern UI**: Built with React, TailwindCSS components
 - **Real-time Updates**: Server actions for seamless data synchronization
 - **Type Safety**: Full TypeScript implementation with Zod validation
 

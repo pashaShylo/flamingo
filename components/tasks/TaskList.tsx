@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useCallback, useState, useTransition, memo } from 'react';
 import { useRouter } from 'next/navigation';
 import { Task, TaskStatus } from '@/prisma/generated/client';
 import { Button } from '@/components/ui/Button';
@@ -14,17 +14,17 @@ interface TaskListProps {
   tasks: Task[];
 }
 
-export function TaskList({ tasks }: TaskListProps) {
+export const TaskList = memo(function TaskList({ tasks }: TaskListProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [createModalOpen, setCreateModalOpen] = useState(false);
 
-  const handleSuccess = () => {
+  const handleSuccess = useCallback(() => {
     // Use transition for smooth revalidation
     startTransition(() => {
       router.refresh();
     });
-  };
+  }, [startTransition, router]);
 
   return (
     <div className="relative space-y-6">
@@ -50,7 +50,7 @@ export function TaskList({ tasks }: TaskListProps) {
         </div>
       ) : (
         <div className="grid md:grid-cols-3 gap-6">
-          {Object.entries(TaskStatus).map(([status]) => {
+          {Object.values(TaskStatus).map((status) => {
             const statusOption = TASK_FILTER_OPTIONS.find(opt => opt.value === status);
             const filteredTasks = tasks.filter(task => task.status === status);
             return (
@@ -81,4 +81,4 @@ export function TaskList({ tasks }: TaskListProps) {
       />
     </div>
   );
-}
+});

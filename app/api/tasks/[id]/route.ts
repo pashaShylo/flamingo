@@ -7,6 +7,7 @@ import {
   successResponse,
   withErrorHandler,
 } from '@/lib/api/utils';
+import { CLIENT_ROUTES } from '@/lib/constants/routes.constants';
 
 type RouteContext = {
   params: Promise<{ id: string }>;
@@ -24,11 +25,11 @@ export const PATCH = withErrorHandler(
     const task = await TaskService.updateTask(validated, session.user.id);
 
     // Revalidate tasks page to show updated task
-    revalidatePath('/tasks', 'page');
+    revalidatePath(CLIENT_ROUTES.DASHBOARD, 'page');
 
     return successResponse(task);
   },
-  'PATCH /api/task/[id]'
+  'PATCH /api/tasks/[id]'
 );
 
 export const DELETE = withErrorHandler(
@@ -43,9 +44,9 @@ export const DELETE = withErrorHandler(
     const task = await TaskService.deleteTask(validated, session.user.id);
 
     // Revalidate tasks page to remove deleted task
-    revalidatePath('/tasks', 'page');
+    revalidatePath(CLIENT_ROUTES.DASHBOARD, 'page');
 
     return successResponse(task);
   },
-  'DELETE /api/task/[id]'
+  'DELETE /api/tasks/[id]'
 );

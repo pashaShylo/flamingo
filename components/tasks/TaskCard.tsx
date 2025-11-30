@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState, memo } from 'react';
 import { useRouter } from 'next/navigation';
 import { Task } from '@/prisma/generated/client';
 import { Pencil, Trash2, Clock } from 'lucide-react';
@@ -17,29 +17,29 @@ interface TaskCardProps {
   startTransition: (callback: () => void) => void;
 }
 
-export function TaskCard({ task, startTransition }: TaskCardProps) {
+export const TaskCard = memo(function TaskCard({ task, startTransition }: TaskCardProps) {
   const router = useRouter();
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const formattedDate = new Date(task.createdAt).toLocaleDateString('en-US', DATE_FORMAT_OPTIONS);
 
-  const handleDeleteConfirm = async () => {
+  const handleDeleteConfirm = useCallback(async () => {
     setDeleteModalOpen(false);
 
     // Use transition to show loading state without freezing UI
     startTransition(async () => {
       await deleteTask(task.id);
-      router.refresh();
+        router.refresh();
     });
-  };
+  }, [task, startTransition, router]);
 
-  const handleSuccess = () => {
+  const handleSuccess = useCallback(() => {
     // Use transition for smooth revalidation
     startTransition(() => {
       router.refresh();
     });
-  };
+  }, [startTransition, router]);
 
   return (
     <Card className={`border-l-4 ${TASK_PRIORITY_COLORS[task.priority]} hover:shadow-lg transition-shadow`}>
@@ -105,4 +105,4 @@ export function TaskCard({ task, startTransition }: TaskCardProps) {
       />
     </Card>
   );
-}
+});

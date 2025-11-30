@@ -16,7 +16,7 @@ export const taskFormSchema = z.object({
 });
 
 export const updateTaskSchema = z.object({
-  id: z.string(),
+  id: z.cuid(),
   title: z.string().min(1, 'Title is required').max(200, 'Title is too long').optional(),
   description: z.string().max(2000, 'Description is too long').optional().nullable(),
   status: z.enum(TaskStatus).optional(),
@@ -24,7 +24,7 @@ export const updateTaskSchema = z.object({
 });
 
 export const deleteTaskSchema = z.object({
-  id: z.string(),
+  id: z.cuid(),
 });
 
 export type CreateTaskInput = z.infer<typeof createTaskSchema>;

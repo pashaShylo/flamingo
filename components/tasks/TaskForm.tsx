@@ -1,6 +1,6 @@
 'use client';
 
-import { useTransition } from 'react';
+import { useTransition, memo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Task, TaskStatus, TaskPriority } from '@/prisma/generated/client';
@@ -20,7 +20,7 @@ interface TaskFormProps {
   onCancel: () => void;
 }
 
-export function TaskForm({ task, onSuccess, onCancel }: TaskFormProps) {
+export const TaskForm = memo(function TaskForm({ task, onSuccess, onCancel }: TaskFormProps) {
   const [isPending, startTransition] = useTransition();
 
   const {
@@ -128,4 +128,4 @@ export function TaskForm({ task, onSuccess, onCancel }: TaskFormProps) {
       </div>
     </form>
   );
-}
+});
