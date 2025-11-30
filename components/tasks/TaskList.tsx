@@ -2,10 +2,9 @@
 
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { Task } from '@prisma/client';
+import { Task, TaskStatus } from '@/prisma/generated/client';
 import { Button } from '@/components/ui/Button';
 import { Plus, Loader2 } from 'lucide-react';
-import { TaskStatus } from '@prisma/client';
 import { TASK_FILTER_OPTIONS } from '@/lib/constants/task.constants';
 import { BUTTON_LABELS, EMPTY_STATES } from '@/lib/constants/ui.constants';
 import { TaskCard } from './TaskCard';

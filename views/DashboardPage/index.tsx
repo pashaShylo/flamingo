@@ -1,7 +1,7 @@
 
 'use client';
 import { TaskList } from '@/components/tasks/TaskList';
-import { Task } from '@prisma/client';
+import { Task } from '@/prisma/generated/client';
 
 interface DashboardPageProps {
   tasks: Task[];

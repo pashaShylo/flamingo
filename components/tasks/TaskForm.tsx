@@ -3,7 +3,7 @@
 import { useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Task, TaskStatus, TaskPriority } from '@prisma/client';
+import { Task, TaskStatus, TaskPriority } from '@/prisma/generated/client';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Textarea } from '@/components/ui/Textarea';

@@ -1,6 +1,6 @@
 'use server';
 
-import { Task } from '@prisma/client';
+import { Task } from '@/prisma/generated/client';
 import { auth } from '@/lib/auth';
 import { TaskService } from '@/services/task.service';
 

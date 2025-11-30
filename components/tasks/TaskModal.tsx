@@ -1,6 +1,6 @@
 'use client';
 
-import { Task } from '@prisma/client';
+import { Task } from '@/prisma/generated/client';
 import { Modal } from '@/components/ui/Modal';
 import { TaskForm } from './TaskForm';
 import { BUTTON_LABELS } from '@/lib/constants/ui.constants';

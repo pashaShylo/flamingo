@@ -1,4 +1,4 @@
-import { TaskStatus, TaskPriority as PrismaTaskPriority, TaskPriority } from '@prisma/client';
+import { TaskStatus, TaskPriority } from '@/prisma/generated/client';
 
 /**
  * Task Status display labels
@@ -12,7 +12,7 @@ export const TASK_STATUS_LABELS: Record<TaskStatus, string> = {
 /**
  * Task Priority display labels
  */
-export const TASK_PRIORITY_LABELS: Record<PrismaTaskPriority, string> = {
+export const TASK_PRIORITY_LABELS: Record<TaskPriority, string> = {
   LOW: 'Low',
   MEDIUM: 'Medium',
   HIGH: 'High',

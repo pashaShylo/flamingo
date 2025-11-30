@@ -3,7 +3,7 @@
  * Handles all HTTP requests to the tasks API with proper error handling
  */
 
-import { Task, TaskStatus, TaskPriority } from '@prisma/client';
+import { TaskStatus, TaskPriority } from '@/prisma/generated/client';
 
 interface ApiResponse<T = unknown> {
   success: boolean;

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Task } from '@prisma/client';
+import { Task } from '@/prisma/generated/client';
 import { Pencil, Trash2, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardFooter } from '@/components/ui/Card';
